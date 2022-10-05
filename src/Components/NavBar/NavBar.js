@@ -6,18 +6,20 @@ const NavBar = () => {
     const [open, setOpen] = useState(false);
     const routes = [
         { id: 1, name: 'Home', path: '/home' },
-        { id: 2, name: 'Product', path: '/home' },
-        { id: 3, name: 'Orders', path: '/home' },
-        { id: 4, name: 'Contacts', path: '/home' },
-        { id: 5, name: 'About', path: '/home' },
+        { id: 2, name: 'Product', path: '/product' },
+        { id: 3, name: 'Orders', path: '/orders' },
+        { id: 4, name: 'Contacts', path: '/contacts' },
+        { id: 5, name: 'About', path: '/about' },
     ]
     return (
-        <nav>
-            {
-                open ? <XMarkIcon onClick={() => { setOpen(!open) }} className="h-6 w-6" /> : <Bars3Icon onClick={() => { setOpen(!open) }} className="h-6 w-6" />
-            }
+        <nav className='bg-purple-200 w-full'>
+            <div onClick={() => { setOpen(!open) }} className="h-6 w-6 md:hidden">
+                {
+                    open ? <XMarkIcon /> : <Bars3Icon />
+                }
+            </div>
 
-            <ul className='md: flex justify-center'>
+            <ul className={`bg-purple-200 md:flex w-full justify-center absolute md:static duration-500 ease-in ${open ? 'top-6' : 'top-[-120px]'}`}>
                 {
                     routes.map(route => <Link key={route.id} route={route}></Link>)
                 }
